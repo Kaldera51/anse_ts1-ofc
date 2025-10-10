@@ -408,20 +408,19 @@ header {
 .gallery-modal {
     display: none;
     position: fixed;
-    z-index: 9999;
+    z-index: 2000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.9);
     animation: fadeIn 0.3s ease;
-    overflow: hidden;
 }
 
 .gallery-modal-content {
     position: relative;
     background: var(--white);
-    margin: 15% auto;
+    margin: 2% auto;
     padding: 0;
     width: 90%;
     max-width: 800px;
@@ -438,7 +437,7 @@ header {
     font-size: 2rem;
     font-weight: bold;
     cursor: pointer;
-    z-index: 10000;
+    z-index: 10;
     background: rgba(0, 0, 0, 0.5);
     width: 40px;
     height: 40px;
@@ -478,27 +477,6 @@ header {
 .gallery-modal-info {
     padding: 30px;
     background: var(--white);
-}
-
-/* 🆕 PERBESAR AREA GALLERY MODAL HEADER */
-.gallery-modal-info {
-    padding: 30px;
-    background: var(--white);
-    position: relative;
-    cursor: pointer;
-    min-height: 100px;
-}
-
-.gallery-modal-info::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
-    background: transparent;
-    cursor: pointer;
-    z-index: 1;
 }
 
 .gallery-modal-title {
@@ -687,14 +665,13 @@ header {
 .modal {
     display: none;
     position: fixed;
-    z-index: 9999;
+    z-index: 2000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     animation: fadeIn 0.3s ease;
-    overflow: hidden;
 }
 
 @keyframes fadeIn {
@@ -703,13 +680,13 @@ header {
 }
 
 .modal-content {
-    position: relative;
     background-color: var(--white);
-    margin: 2% auto;
+    margin: 5% auto;
     padding: 0;
     border-radius: 15px;
     width: 90%;
     max-width: 600px;
+    position: relative;
     animation: slideIn 0.3s ease;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     max-height: 90vh;
@@ -732,12 +709,6 @@ header {
     transition: var(--transition);
 }
 
-.close-modal:hover, .close-gallery:hover {
-    color: var(--accent-color);
-    transform: rotate(90deg) scale(1.1);
-    background: rgba(255, 255, 255, 1);
-}
-
 .close-modal:hover {
     color: var(--accent-color);
     transform: rotate(90deg);
@@ -753,11 +724,6 @@ header {
     margin-bottom: 30px;
     padding-bottom: 20px;
     border-bottom: 2px solid var(--secondary-color);
-}
-
-.student-detail-header:active {
-    background: rgba(139, 69, 19, 0.1);
-    border-radius: 10px;
 }
 
 .student-detail-avatar {
@@ -1603,59 +1569,6 @@ header {
     }
 }
 
-/* === FIX BUG ANDROID === */
-
-/* FIX 1: Kotak putih hamburger menu */
-@media (max-width: 768px) {
-    .hamburger {
-        background: transparent !important;
-        border: none !important;
-        padding: 8px !important;
-        margin: 0 !important;
-        -webkit-tap-highlight-color: transparent !important;
-    }
-    
-    .hamburger:focus {
-        outline: none !important;
-        box-shadow: none !important;
-    }
-    
-    .hamburger .bar {
-        background-color: var(--white) !important;
-    }
-}
-
-/* FIX 2: Android touch issues */
-@media (max-width: 768px) {
-    .btn, 
-    .schedule-tab, 
-    .student-card, 
-    .gallery-item,
-    .nav-link {
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-    }
-    
-    .schedule-tab {
-        min-height: 44px;
-        min-width: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 12px 16px !important;
-    }
-    
-    .btn {
-        min-height: 44px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-    }
-}
-
 /* ===== MOBILE FIXES ===== */
 @media (max-width: 768px) {
     /* FIX: Body & Container */
@@ -1697,7 +1610,7 @@ header {
     
     .logo-text p {
         font-size: 0.7rem;
-        display: none; /*Sembunyikan textdraw logo*/
+        display: none; /* Sembunyikan di mobile biar rapi */
     }
     
     .logo-icon {
@@ -1819,8 +1732,8 @@ header {
     }
     
     .student-card {
-        padding: 25px 15px;
-        min-height: 160px;
+        padding: 15px 10px;
+        min-height: 140px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -2174,13 +2087,13 @@ header {
 @media (max-width: 768px) {
     /* Fix untuk student cards biar bisa di-click */
     .student-card {
-        min-height: 140px ;
-        cursor: pointer ;
-        -webkit-tap-highlight-color: transparent ;
-        touch-action: manipulation ;
-        user-select: none ;
-        -webkit-user-select: none ;
-        padding: 20px 15px ;
+        min-height: 44px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        user-select: none;
+        -webkit-user-select: none;
+        padding: 20px 15px !important;
     }
     
     /* Fix untuk gallery items */
@@ -2271,7 +2184,7 @@ header {
     
     /* Optimize touch targets */
     .student-card {
-        min-height: 160px !important;
+        min-height: 140px !important;
         display: flex !important;
         flex-direction: column !important;
         justify-content: center !important;
@@ -2296,25 +2209,4 @@ header {
 .btn {
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
-}
-
-/* ===== PERBESAR TOUCH AREA ===== */
-@media (max-width: 768px) {
-    .student-card {
-        min-height: 160px;
-        padding: 25px 15px;
-        margin: 8px;
-    }
-    
-    .schedule-tab {
-        min-height: 50px;
-        min-width: 80px;
-        padding: 15px 20px;
-        margin: 5px;
-    }
-    
-    .btn {
-        min-height: 50px;
-        padding: 15px 30px;
-    }
 }

@@ -8,7 +8,7 @@ const galleryData = [
         date: "15 Juli 2025",
         location: "Los Angeles, California",
         category: "Wisata",
-        photos: 1
+        photos: 2
     }
 ]
 
@@ -38,7 +38,7 @@ mainLeaders: [
             birthDate: "01 Oktober 2009",
             address: "Jetak Kedungdowo, Kaliwungu, Kudus",
             hobbies: ["Game", "Program"],
-            achievements: ["Juara 1 Endurance Esport (2025)"],
+            achievements: [],
             bio: "Ingin menjadi programmer handal namun enggan ngoding.",
             image: "images/students/rizqi-maulana.jpg"
         },
@@ -52,7 +52,7 @@ mainLeaders: [
             address: "Mijen Gadon, Kaliwungu, Kudus",
             hobbies: ["Game", "Jogging", "Fishing"],
             achievements: ["Juara 1 Lomba Adzan tingkat Desa (2019)"],
-            bio: "Saya Islam.",
+            bio: "I'm Muslim.",
             image: "images/students/aris.jpg"
         }
     ],
@@ -292,16 +292,6 @@ const scheduleData = {
     }
 };
 
-// === EMERGENCY FIX UNTUK ANDROID ===
-console.log('Initializing website...');
-
-if (/Android/.test(navigator.userAgent)) {
-    console.log('Android device detected, applying fixes...');
-    
-    // Force CSS repaint
-    document.documentElement.style.webkitTransform = 'translateZ(0)';
-}
-
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeWebsite();
@@ -317,6 +307,7 @@ function initializeWebsite() {
     setupStudentModals();
     initializeMobileFeatures();
     centerHeroSection();
+    setupEventDelegation();
 }
 
 // Load Gallery Data
@@ -505,7 +496,7 @@ function setupStudentModals() {
         }
     });
 
-    // Close dengan tombol ESC
+    // Close dengan ESC key
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape') {
             modal.style.display = 'none';
@@ -514,6 +505,7 @@ function setupStudentModals() {
 }
 
 function findStudentById(id) {
+    // Cari di semua kategori
     const allStudents = [
         ...studentsData.mainLeaders,
         ...studentsData.coordinators,
@@ -724,10 +716,7 @@ function setupScheduleTabs() {
     const days = document.querySelectorAll('.schedule-day');
     
     tabs.forEach(tab => {
-        tab.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
+        tab.addEventListener('click', function() {
             const day = this.getAttribute('data-day');
             
             // Remove active class from all tabs and days
@@ -736,17 +725,8 @@ function setupScheduleTabs() {
             
             // Add active class to current tab and day
             this.classList.add('active');
-            const targetDay = document.querySelector(`.schedule-day[data-day="${day}"]`);
-            if (targetDay) {
-                targetDay.classList.add('active');
-            }
+            document.querySelector(`.schedule-day[data-day="${day}"]`).classList.add('active');
         });
-        
-        // TAMBAHKAN touch event khusus untuk mobile
-        tab.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            this.click(); // Trigger click event
-        }, { passive: false });
     });
 }
 
@@ -757,10 +737,30 @@ function getTotalClasses() {
     });
     return total;
 }
+    
+    // Create header row
+    const headerRow = document.createElement('tr');
+    scheduleData.headers.forEach(header => {
+        const th = document.createElement('th');
+        th.textContent = header;
+        headerRow.appendChild(th);
+    });
+    scheduleTable.appendChild(headerRow);
+    
+    // Create data rows
+    scheduleData.rows.forEach(rowData => {
+        const row = document.createElement('tr');
+        rowData.forEach(cellData => {
+            const td = document.createElement('td');
+            td.textContent = cellData;
+            row.appendChild(td);
+        });
+        scheduleTable.appendChild(row);
+    });
 
 // Setup Event Listeners
 function setupEventListeners() {
-    // Mobile menu toggle
+    // Mobile menu toggle (tetap sama)
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     
@@ -769,7 +769,7 @@ function setupEventListeners() {
         navMenu.classList.toggle('active');
     });
     
-    // Close mobile menu when clicking on a link
+    // Close mobile menu when clicking on a link (tetap sama)
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', function() {
             hamburger.classList.remove('active');
@@ -777,29 +777,14 @@ function setupEventListeners() {
         });
     });
     
-    // === FIX BUG: Tombol "Mari Kita Jelajahi" ===
-    const exploreBtn = document.querySelector('.hero .btn-primary');
-    if (exploreBtn) {
-        exploreBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector('#about');
-            if (target) {
-                target.scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'start' 
-                });
-            }
-        });
-    }
-    
     // Contact form submission
     const contactForm = document.getElementById('contactForm');
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        handleFormSubmission();
+        handleFormSubmission(); // Panggil fungsi baru
     });
     
-    // Smooth scrolling for navigation links
+    // Smooth scrolling for navigation links (tetap sama)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -969,6 +954,37 @@ function hideBubble() {
     }
 }
 
+// Add some interactive features
+function setupInteractiveFeatures() {
+    // Add click effect to student cards
+    document.querySelectorAll('.student-card').forEach(card => {
+        card.addEventListener('click', function() {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+    });
+    
+    // Add loading animation
+    function setupEventListeners() {
+        document.body.classList.add('loaded');
+    };
+}
+
+// Contact form submission
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        handleFormSubmission(); showBubble('loading', 'Judul', 'Pesan'); // Untuk loading
+showBubble('success', 'Judul', 'Pesan'); // Untuk success  
+showBubble('error', 'Judul', 'Pesan'); // Untuk error
+hideBubble(); // Memanggil fungsi baru
+    });
+
+// Initialize interactive features
+setupInteractiveFeatures();
+
 // ======= MOBILE FEATURES =======
 
 // Mobile-specific initialization
@@ -977,13 +993,7 @@ function initializeMobileFeatures() {
     preventZoomOnInput();
     setupSwipeGestures();
     optimizeMobilePerformance();
-    
-    // TAMBAHKAN: Force reflow untuk fix Android issues
-    setTimeout(() => {
-        document.body.style.display = 'none';
-        document.body.offsetHeight; // Trigger reflow
-        document.body.style.display = '';
-    }, 100);
+    setupMobileTouchFix();
 }
 
 // ===== HERO CENTERING FIX =====
@@ -1012,6 +1022,8 @@ function setupTouchEvents() {
     
     touchElements.forEach(element => {
         element.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            this.style.transition = 'transform 0.1s ease, opacity 0.1s ease';
             this.style.transform = 'scale(0.97)';
             this.style.opacity = '0.9';
         });
@@ -1105,4 +1117,113 @@ function switchToPrevScheduleTab() {
     const prevIndex = (currentIndex - 1 + tabs.length) % tabs.length;
     
     tabs[prevIndex].click();
+}
+
+// ===== FIXED MOBILE TOUCH FOR ALL ELEMENTS =====
+function setupMobileTouchFix() {
+    console.log('Setting up mobile touch fix for ALL elements...');
+    
+    // Tunggu sampai semua element ready
+    setTimeout(() => {
+        // === STUDENT CARDS ===
+        const studentCards = document.querySelectorAll('.student-card');
+        console.log('Found', studentCards.length, 'student cards');
+        
+        studentCards.forEach(card => {
+            // HAPUS semua existing event listeners dulu
+            const newCard = card.cloneNode(true);
+            card.parentNode.replaceChild(newCard, card);
+        });
+        
+        // Re-attach ke student cards yang baru
+        document.querySelectorAll('.student-card').forEach(card => {
+            card.onclick = function(e) {
+                console.log('Student card CLICKED!');
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const studentId = parseInt(this.getAttribute('data-id'));
+                const student = findStudentById(studentId);
+                if (student) {
+                    showStudentModal(student);
+                }
+                return false;
+            };
+        });
+        
+        // === GALLERY ITEMS ===
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        console.log('Found', galleryItems.length, 'gallery items');
+        
+        galleryItems.forEach(item => {
+            const newItem = item.cloneNode(true);
+            item.parentNode.replaceChild(newItem, item);
+        });
+        
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.onclick = function(e) {
+                console.log('Gallery item CLICKED!');
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const itemId = parseInt(this.getAttribute('data-id'));
+                const galleryItem = galleryData.find(item => item.id === itemId);
+                if (galleryItem) {
+                    showGalleryModal(galleryItem);
+                }
+                return false;
+            };
+        });
+        
+        // === SCHEDULE TABS ===
+        const scheduleTabs = document.querySelectorAll('.schedule-tab');
+        console.log('Found', scheduleTabs.length, 'schedule tabs');
+        
+        // Setup schedule tabs functionality
+        setupScheduleTabs();
+        
+        // === BUTTON "MARI KITA JELAJAHI" ===
+        const exploreBtn = document.querySelector('.hero .btn-primary');
+        if (exploreBtn) {
+            exploreBtn.onclick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const target = document.querySelector('#about');
+                if (target) {
+                    target.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }
+                return false;
+            };
+        }
+        
+        // === NAVIGATION LINKS ===
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.onclick = function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }
+                
+                // Close mobile menu jika terbuka
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.querySelector('.nav-menu');
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                
+                return false;
+            };
+        });
+        
+        console.log('Mobile touch fix applied successfully!');
+        
+    }, 1500); // Tunggu 1.5 detik biar semua element benar-benar ready
 }
