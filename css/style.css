@@ -1054,6 +1054,7 @@ header {
     color: var(--primary-color);
     transition: var(--transition);
     font-size: 1rem;
+    min-height: 44px;
 }
 
 .schedule-tab:hover {

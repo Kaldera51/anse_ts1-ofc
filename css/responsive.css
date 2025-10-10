@@ -43,7 +43,7 @@
     .students-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .about-item {
         flex-direction: column;
         text-align: center;
@@ -84,8 +84,9 @@
     }
     
     .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
+        padding: 15px 30px;
+        font-size: 1rem;
+        min-height: 44px;
     }
     
     .section-title h2 {

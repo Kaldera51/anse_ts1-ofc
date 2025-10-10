@@ -52,7 +52,7 @@ mainLeaders: [
             address: "Mijen Gadon, Kaliwungu, Kudus",
             hobbies: ["Game", "Jogging", "Fishing"],
             achievements: ["Juara 1 Lomba Adzan tingkat Desa (2019)"],
-            bio: "I'm Muslim.",
+            bio: "Saya islam.",
             image: "images/students/aris.jpg"
         }
     ],
