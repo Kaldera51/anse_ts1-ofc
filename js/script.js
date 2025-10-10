@@ -8,7 +8,17 @@ const galleryData = [
         date: "15 Juli 2025",
         location: "Los Angeles, California",
         category: "Wisata",
-        photos: 2
+        photos: 1
+    },
+    {
+        id: 2,
+        title: "Mengunjungi The Strip di Las Vegas",
+        description: "Keren bercahaya abiezzz, serasa jadi mafia kelas kakap wak.",
+        image: "images/gallery/las-vegas-strip.jpg",
+        date: "08 April 2024",
+        location: "Las Vegas, Nevada",
+        category: "Wisata",
+        photos: 1
     }
 ]
 
@@ -37,7 +47,7 @@ mainLeaders: [
             nim: "023",
             birthDate: "01 Oktober 2009",
             address: "Jetak Kedungdowo, Kaliwungu, Kudus",
-            hobbies: ["Game", "Program"],
+            hobbies: ["Roleplay", "Program"],
             achievements: [],
             bio: "Ingin menjadi programmer handal namun enggan ngoding.",
             image: "images/students/rizqi-maulana.jpg"
