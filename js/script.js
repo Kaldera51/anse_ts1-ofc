@@ -442,13 +442,6 @@ function showGalleryModal(item) {
     `;
     
     modal.style.display = 'block';
-
-        setTimeout(() => {
-        modal.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'center'
-        });
-    }, 100);
 }
 
 // Fungsi untuk load students
@@ -654,13 +647,6 @@ function showStudentModal(student) {
     `;
     
     modal.style.display = 'block';
-
-        setTimeout(() => {
-        modal.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'center'
-        });
-    }, 100);
 }
 
 // Load Schedule Data
