@@ -1,0 +1,175 @@
+/* Tablet Devices */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 90%;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .about-content {
+        gap: 30px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 2fr 1fr 1fr;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    .section-padding {
+        padding: 60px 0;
+    }
+    
+    .hero {
+        padding: 150px 0 80px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-description {
+        font-size: 1.1rem;
+    }
+    
+    .section-title h2 {
+        font-size: 1.8rem;
+    }
+    
+    .gallery-grid,
+    .students-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .about-item i {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .contact-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .contact-item i {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .hamburger {
+        display: flex !important;
+        z-index: 1001;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 70px; /* Sesuaikan dengan tinggi header */
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--primary-color);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 20px;
+        transition: 0.3s ease;
+        z-index: 1000;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-link {
+        display: block;
+        padding: 15px;
+        width: 100%;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        font-size: 16px !important; /* Prevent zoom on iOS */
+    }
+
+    .hero {
+        padding: 100px 0 50px !important;
+        min-height: 70vh !important; /* Biar ga terlalu tinggi */
+    }
+    
+    .hero-content {
+        padding: 20px 15px !important;
+    }
+
+    .student-card {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent; /* Remove blue tap highlight */
+        user-select: none; /* Prevent text selection */
+        min-height: 140px !important;
+    }
+    
+    .student-card:active {
+        transform: scale(0.98) !important; /* Touch feedback */
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .logo-text h1 {
+        font-size: 1.4rem;
+    }
+    
+    .logo-text p {
+        font-size: 0.8rem;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .section-title h2 {
+        font-size: 1.6rem;
+    }
+    
+    .image-placeholder {
+        height: 300px;
+    }
+
+    .btn, 
+    .nav-link,
+    .student-card,
+    .gallery-item,
+    .schedule-tab {
+        min-height: 44px; /* Minimum touch target size */
+        min-width: 44px;
+    }
+    
+    /* Pastikan button bisa di-tap */
+    .btn {
+        padding: 12px 24px !important;
+    }
+}
