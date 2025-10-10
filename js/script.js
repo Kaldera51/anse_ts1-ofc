@@ -991,7 +991,6 @@ setupInteractiveFeatures();
 function initializeMobileFeatures() {
     setupTouchEvents();
     preventZoomOnInput();
-    setupSwipeGestures();
     optimizeMobilePerformance();
     setupMobileTouchFix();
 }
@@ -1049,37 +1048,6 @@ function preventZoomOnInput() {
             this.style.fontSize = '16px'; // Prevent zoom on iOS
         });
     });
-}
-
-// Optional: Swipe gestures for schedule
-function setupSwipeGestures() {
-    let touchStartX = 0;
-    let touchEndX = 0;
-    const scheduleContainer = document.querySelector('.schedule-container');
-
-    if (scheduleContainer) {
-        scheduleContainer.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        scheduleContainer.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleScheduleSwipe();
-        });
-    }
-
-    function handleScheduleSwipe() {
-        const swipeThreshold = 50;
-        
-        if (touchEndX < touchStartX - swipeThreshold) {
-            // Swipe left - next day
-            switchToNextScheduleTab();
-        }
-        if (touchEndX > touchStartX + swipeThreshold) {
-            // Swipe right - previous day
-            switchToPrevScheduleTab();
-        }
-    }
 }
 
 function optimizeMobilePerformance() {
