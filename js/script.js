@@ -38,7 +38,7 @@ mainLeaders: [
             birthDate: "01 Oktober 2009",
             address: "Jetak Kedungdowo, Kaliwungu, Kudus",
             hobbies: ["Game", "Program"],
-            achievements: ["Juara 1 WRC Esport (2025)"],
+            achievements: ["Juara 1 Endurance Esport (2025)"],
             bio: "Ingin menjadi programmer handal namun enggan ngoding.",
             image: "images/students/rizqi-maulana.jpg"
         },
