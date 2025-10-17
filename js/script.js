@@ -2,73 +2,43 @@
 const galleryData = [
     {
         id: 1,
-        title: "Proklamasi",
-        description: "Isi dari galeri ini hanyalah sementara.",
-        image: "images/gallery/merdeka.png",
-        date: "17 Agustus 1945",
-        location: "Batavia, Indonesia",
-        category: "Merdeka",
-        photos: 1
+        title: "Slot Kosong",
+        description: "Galeri blm diisi.",
+        image: "",
+        date: "01 Februari 2003",
+        location: "-",
+        category: "-",
+        photos: 0
     },
     {
         id: 2,
-        title: "6 Jenderal, 1 Perwira",
-        description: "Isi dari galeri ini hanyalah sementara.",
-        image: "images/gallery/g30s.jpg",
-        date: "30 September 1965",
-        location: "Djakarta, Indonesia",
-        category: "PeKa-Ih",
-        photos: 1
+        title: "Slot Kosong",
+        description: "Galeri blm diisi.",
+        image: "",
+        date: "04 Mei 2006",
+        location: "-",
+        category: "-",
+        photos: 0
     },
     {
         id: 3,
-        title: "Tragedi KA 220 vs KA 225",
-        description: "Isi dari galeri ini hanyalah sementara.",
-        image: "images/gallery/bintaro.jpg",
-        date: "19 Oktober 1987",
-        location: "Jakarta, Indonesia",
-        category: "Bintaro",
-        photos: 1
-    },
-    {
-        id: 4,
-        title: "Era Reformasi",
-        description: "Isi dari galeri ini hanyalah sementara.",
-        image: "images/gallery/reformasi1998.jpg",
-        date: "21 Mei 1998",
-        location: "Jakarta, Indonesia",
-        category: "Trisakti",
-        photos: 1
-    },
-    {
-        id: 5,
-        title: "Tsunami Aceh",
-        description: "Isi dari galeri ini hanyalah sementara.",
-        image: "images/gallery/tsunami-aceh.jpg",
-        date: "26 Desember 2004",
-        location: "Aceh, Indonesia",
-        category: "Bencana",
-        photos: 1
-    },
-    {
-        id: 6,
-        title: "Tragedi Kanjuruhan",
-        description: "Isi dari galeri ini hanyalah sementara.",
-        image: "images/gallery/kanjuruhan.jpg",
-        date: "01 Oktober 2022",
-        location: "Malang, Indonesia",
-        category: "Bola",
-        photos: 1
+        title: "Slot Kosong",
+        description: "Galeri blm diisi.",
+        image: "",
+        date: "07 Agustus 2009",
+        location: "-",
+        category: "-",
+        photos: 0
     }
 ]
 
 // Data Wali Kelas - BARU
 const teacherData = {
     name: "Muhammad Khoirul Fikri Maulana, S.Ag.",
-    position: "Wali Kelas XI-A TSM",
-    subject: "Wali Kelas terkece dan tergwanteng",
+    position: "Wali Kelas XI-I TSM",
+    subject: "Wali Kelas terganteng dan tergawhul",
     education: "S.Ag. (Sarjana Agama)",
-    experience: "1945",
+    experience: "-",
     specialization: "Pendidikan Agama Islam",
     bio: "System.out.println(\"Kosong\");",
     teachingPhilosophy: "System.out.println(\"Kosong\");",
@@ -78,8 +48,8 @@ const teacherData = {
     achievements: [
         "-"
     ],
-    motto: "Motto guru belom ada",
-    joinDate: "1453",
+    motto: "(Motto Hidup)",
+    joinDate: "-",
     studentsCount: 29,
     subjectsCount: 1,
     image: "images/students/default.png"
@@ -231,13 +201,25 @@ mainLeaders: [
             initials: "AMU",
             nim: "003",
             birthDate: "-",
-            address: "-",
+            address: "Sidorekso, Kaliwungu, Kudus",
             hobbies: ["Game"],
             achievements: [],
             bio: "no bio yet",
             image: "images/students/default.png"
         },
-        { id: 12, name: "Bagus Ahmad Dinijad", position: "Anggota", initials: "BAD", nim: "006", image: "images/students/default.png" },
+        {
+            id: 12,
+            name: "Bagus Ahmad Dinijad",
+            position: "Anggota",
+            initials: "BAD",
+            nim: "006",
+            birthDate: "-",
+            address: "Sidorekso, Kaliwungu, Kudus",
+            hobbies: ["Motorcycle"],
+            achievements: [],
+            bio: "no bio yet",
+            image: "images/students/default.png"
+        },
         {
             id: 13,
             name: "Farel Firmansyah",
@@ -753,7 +735,7 @@ function setupStudentModals() {
         });
     });
 
-    // PASTIKAN CLOSE EVENTS ADA - tambahin kalo belum ada
+    // Close Event = Yes
     if (closeBtn) {
         closeBtn.addEventListener('click', function() {
             modal.style.display = 'none';
